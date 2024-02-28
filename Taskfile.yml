@@ -1,0 +1,41 @@
+version: '3'
+
+tasks:
+  cs:
+    cmds:
+      - colima start --arch linux/amd64
+
+  sa:
+    deps: [cs]
+    cmds:
+      - docker ps -q | xargs -r docker stop
+
+  pr:
+    deps: [sa]
+    cmds:
+      - docker system prune -af --volumes && docker volume prune -af
+
+  up:
+    deps: [cs]
+    cmds:
+      - docker compose up -d
+
+  re:
+    deps: [pr, up]
+    cmds:
+      - docker compose up -d
+
+  ls:
+    deps: [cs]
+    cmds:
+      - docker container ls -a
+
+  dbup:
+    deps: [cs]
+    cmds:
+      - DOCKER_BUILDKIT=0 docker compose up -d
+
+  dd:
+    deps: [cs]
+    cmds:
+      - docker run --rm -it {{.CLI_ARGS}} sh

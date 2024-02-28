@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# Except
+!src
+!scripts
+!prisma
+!nest-cli.json
+!package-lock.json
+!package.json
+!tsconfig.build.json
+!tsconfig.json

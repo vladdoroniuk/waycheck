@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  waycheck:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - APP_NAME=waycheck
+    container_name: waycheck
+    restart: unless-stopped
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      - PORT=${PORT}
+      - POSTGRES_URL=${POSTGRES_CONTAINER_URL}
+      - REDIS_HOST=${REDIS_CONTAINER_HOST}
+      - REDIS_PORT=${REDIS_PORT}
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:13.13-bullseye
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.2.4-bookworm
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data: {}
+  redis_data: {}
