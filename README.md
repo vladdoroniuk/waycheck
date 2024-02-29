@@ -7,6 +7,8 @@
 - localhost:5432 -> PostgreSQL
 - localhost:5555 -> Prisma Studio (npm run db:studio, only in **local** dev)
 
+After running `docker compose up -d` you should wait at least for 20 seconds.
+
 ## System Design Diagram
 
 <p align="center">
