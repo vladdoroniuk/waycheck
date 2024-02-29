@@ -11,9 +11,9 @@ import {
 } from './interfaces';
 import * as bcrypt from 'bcrypt';
 import { UsersRepository } from './users.repository';
-import { REDIS_KEYS, SALT_ROUNDS } from 'src/utils/consts';
-import { RedisService } from 'src/redis/redis.service';
-import { AuthService } from 'src/auth/auth.service';
+import { REDIS_KEYS, SALT_ROUNDS } from '../utils/consts';
+import { RedisService } from '../redis/redis.service';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class UsersService {

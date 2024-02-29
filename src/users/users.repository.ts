@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserAccount, UserSignInCredentials } from './interfaces';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class UsersRepository {
@@ -27,16 +27,14 @@ export class UsersRepository {
   async createUserAccount(
     userAccount: UserAccount,
     userSignInCredentials: UserSignInCredentials,
-  ): Promise<number> {
+  ) {
     // atomic transaction
-    const createdAccount = await this.prismaService.userAccount.create({
+    await this.prismaService.userAccount.create({
       data: {
         ...userAccount,
         UserSignInCredentials: { create: userSignInCredentials },
       },
     });
-
-    return createdAccount.id;
   }
 
   createUserSignInCredentials(userSignInCredentials: UserSignInCredentials) {
