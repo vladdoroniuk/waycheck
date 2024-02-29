@@ -3,7 +3,7 @@ import { AuthController } from './auth.controller';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { ACCESS_TOKEN_EXPIRATION_TIME_IN_SECONDS } from '../../src/utils/consts';
+import { ACCESS_TOKEN_EXPIRATION_TIME_IN_SECONDS } from '../utils/consts';
 
 @Module({
   imports: [
