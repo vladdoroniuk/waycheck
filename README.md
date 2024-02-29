@@ -17,7 +17,7 @@ Since the server is stateless, we can use K8s.
 
 The user will make GET requests (to update access/refresh tokens) more often than POST requests (for sign in and sign up). So reads will occur more often than writes. In this case, we can use a read-heavy NoSQL database like Redis for caching, and a SQL database like MySQL (it is better than PostgreSQL for reads).
 
-For horizontal scaling Redis, we can apply distributed cache, and for MySQL (PostgreSQL), we can connecgt read-only replicas for horizontal scaling and more computer resources for vertical scaling.
+For horizontal scaling Redis, we can apply distributed cache, and for MySQL (PostgreSQL), we can connect read-only replicas for horizontal scaling and utilize more computer resources for vertical scaling.
 
 Also I'd consider using a cloud provider (AWS/GCP) if we can't manage system on our servers.
 
