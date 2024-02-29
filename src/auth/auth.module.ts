@@ -7,6 +7,7 @@ import { ACCESS_TOKEN_EXPIRATION_TIME_IN_SECONDS } from 'src/utils/consts';
 
 @Module({
   imports: [
+    ConfigModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
