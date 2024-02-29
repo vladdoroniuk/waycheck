@@ -16,6 +16,7 @@ services:
       - POSTGRES_URL=${POSTGRES_CONTAINER_URL}
       - REDIS_HOST=${REDIS_CONTAINER_HOST}
       - REDIS_PORT=${REDIS_PORT}
+      - ACCESS_TOKEN_SECRET_KEY=${ACCESS_TOKEN_SECRET_KEY}
     depends_on:
       - postgres
       - redis

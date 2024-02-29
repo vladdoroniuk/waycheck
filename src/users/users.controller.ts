@@ -13,12 +13,7 @@ export class UsersController {
   }
 
   @Post(ROUTES.users.signUp)
-  signUp(@Body() signUpDto: SignUpDto) {
-    return this.usersService.signUp(signUpDto);
+  async signUp(@Body() signUpDto: SignUpDto) {
+    await this.usersService.signUp(signUpDto);
   }
-
-  /*   @Get('/validate-jwt')
-  validateJwt() {
-    return;
-  } */
 }

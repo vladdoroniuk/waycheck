@@ -6,14 +6,21 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class UsersRepository {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async getUserSignInCredentials(
-    userSignInCredentials: Partial<UserSignInCredentials>,
-  ) {
+  async getUserPasswordHash(username: string) {
     return this.prismaService.userSignInCredentials.findUnique({
       where: {
-        username: userSignInCredentials.username,
+        username,
       },
-      select: { id: true },
+      select: {
+        password: true,
+        userAccountId: true,
+        userAccount: {
+          select: {
+            firstName: true,
+            lastName: true,
+          },
+        },
+      },
     });
   }
 
