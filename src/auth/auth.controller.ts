@@ -1,5 +1,5 @@
 import { Get, Controller, UseGuards, Request } from '@nestjs/common';
-import { ROUTES } from 'src/utils/routes';
+import { ROUTES } from '../../src/utils/routes';
 import { AuthGuard } from './guards';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { DecodedJwtUser } from './interfaces';
